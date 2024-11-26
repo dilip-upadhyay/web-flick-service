@@ -3,9 +3,7 @@ package com.webflick.controllers;
 import com.webflick.models.Employee;
 import com.webflick.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +15,14 @@ public class EmployeeController {
     private final EmployeeRepository employeeRepository;
     @GetMapping
     public List<Employee> getEmployee() {
-        //return employeeRepository.findAll();
-        return List.of(new Employee(1,"Name", 25, "Address"));
+        return employeeRepository.findAll();
+        //return List.of(new Employee(1,"Name", 25, "Address"));
+    }
+
+    @PostMapping
+    public List<Employee> addEmployee(@RequestBody List<Employee> employees) {
+        return employeeRepository.saveAll(employees);
+        //return List.of(new Employee(1,"Name", 25, "Address"));
     }
 
 
