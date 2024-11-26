@@ -1,0 +1,10 @@
+
+package com.webflick.repositories;
+
+import com.webflick.models.EntityName;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RepositoryName extends JpaRepository<EntityName, Long> {
+}
