@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/employees")
+@RequestMapping(path="/pathName")
 @RequiredArgsConstructor
-public class EmployeeController {
+public class ControllerName {
 
-    private final EmployeeRepository employeeRepository;
+    private final RepositoryName repository;
     @GetMapping
     public List<Employee> getEmployee() {
-        return employeeRepository.findAll();
+        return repository.findAll();
         //return List.of(new Employee(1,"Name", 25, "Address"));
     }
 
     @PostMapping
     public List<Employee> addEmployee(@RequestBody List<Employee> employees) {
-        return employeeRepository.saveAll(employees);
+        return repository.saveAll(employees);
         //return List.of(new Employee(1,"Name", 25, "Address"));
     }
 

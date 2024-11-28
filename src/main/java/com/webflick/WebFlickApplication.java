@@ -15,8 +15,10 @@ public class WebFlickApplication {
 
 
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(WebFlickApplication.class, args);
+		//System.getProperty("user.library.path");
 		generateRepos();
 		generateControllers();
+		//Compiler.compileTestClass();
 		restart(configurableApplicationContext);
 	}
 
@@ -33,7 +35,7 @@ public class WebFlickApplication {
 	private static void generateRepos() throws Exception {
 		String className = "com.webflick.repositories.EmployeeRepository";
 		//compile();
-		String repoClass = new Utils().readFile("classpath:templates/repository-class.tmp");
+		String repoClass = new Utils().readFileToString("templates/repository-class.tmp");
 		repoClass = repoClass.replace("RepositoryName","EmployeeRepository");
 		repoClass = repoClass.replace("EntityName","Employee");
 		String outputDir = "target/classes";
@@ -42,16 +44,35 @@ public class WebFlickApplication {
 	}
 
 	private static void generateControllers() throws Exception {
+		createEmployeeController();
+		createEmployeeeController();
+	}
+
+	private static void createEmployeeController() throws Exception {
+		String pathName = "employees";
 		String className = "com.webflick.controllers.EmployeeController";
 		//compile();
-		String repoClass = new Utils().readFile("classpath:templates/controller-class.tmp");
-		//repoClass = repoClass.replace("RepositoryName","EmployeeRepository");
-		//repoClass = repoClass.replace("EntityName","Employee");
+		String repoClass = new Utils().readFileToString("templates/controller-class.tmp");
+		repoClass = repoClass.replace("ControllerName","EmployeeController");
+		repoClass = repoClass.replace("pathName",pathName);
+		repoClass = repoClass.replace("RepositoryName","EmployeeRepository");
 		String outputDir = "target/classes";
 		System.out.println(repoClass);
 		JavaClassGenerator.generateClass(className, repoClass, outputDir);
 	}
 
+	private static void createEmployeeeController() throws Exception {
+		String pathName = "employeees";
+		String className = "com.webflick.controllers.EmployeeeController";
+		//compile();
+		String repoClass = new Utils().readFileToString("templates/controller-class.tmp");
+		repoClass = repoClass.replace("ControllerName","EmployeeeController");
+		repoClass = repoClass.replace("pathName",pathName);
+		repoClass = repoClass.replace("RepositoryName","EmployeeRepository");
+		String outputDir = "target/classes";
+		System.out.println(repoClass);
+		JavaClassGenerator.generateClass(className, repoClass, outputDir);
+	}
 
 
 //	private static void loadDynamicRepositories(ConfigurableApplicationContext configurableApplicationContext) throws Exception {

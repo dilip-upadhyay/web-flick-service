@@ -1,11 +1,14 @@
 package com.webflick;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,5 +29,17 @@ public class Utils {
             log.error("Error while reading file{} :: {}" , file.getPath(), e.getLocalizedMessage());
         }
         return content;
+    }
+
+    public String readFileToString(String path) {
+        String strJson = null;
+        ClassPathResource classPathResource = new ClassPathResource(path);
+        try {
+            byte[] binaryData = FileCopyUtils.copyToByteArray(classPathResource.getInputStream());
+            strJson = new String(binaryData, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strJson;
     }
 }
