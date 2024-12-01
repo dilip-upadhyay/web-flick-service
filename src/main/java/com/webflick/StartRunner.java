@@ -22,8 +22,8 @@ public class StartRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        generateRepos();
-        generateControllers();
+        //generateRepos();
+        //generateControllers();
         //restart(configurableApplicationContext);
         System.out.println("Application started");
         //loadDynamicRepositories(configurableApplicationContext);
@@ -37,7 +37,7 @@ public class StartRunner implements ApplicationRunner {
         repoClass = repoClass.replace("EntityName", "Employee");
         String outputDir = "target/classes";
         System.out.println(repoClass);
-        JavaClassGenerator.generateClass(className, repoClass, outputDir);
+        JavaClassGenerator.generateClass(className, repoClass);
     }
 
     private static void generateControllers() throws Exception {
@@ -55,7 +55,7 @@ public class StartRunner implements ApplicationRunner {
         repoClass = repoClass.replace("RepositoryName", "EmployeeRepository");
         String outputDir = "target/classes";
         System.out.println(repoClass);
-        JavaClassGenerator.generateClass(className, repoClass, outputDir);
+        JavaClassGenerator.generateClass(className, repoClass);
     }
 
     private static void createEmployeeeController() throws Exception {
@@ -68,7 +68,7 @@ public class StartRunner implements ApplicationRunner {
         repoClass = repoClass.replace("RepositoryName", "EmployeeRepository");
         String outputDir = "target/classes";
         System.out.println(repoClass);
-        JavaClassGenerator.generateClass(className, repoClass, outputDir);
+        JavaClassGenerator.generateClass(className, repoClass);
     }
 
 

@@ -12,7 +12,7 @@ class DynamicEntityGeneratorTest {
 
 
     @Test
-    void generateRepository() {
+    void generateRepository() throws Exception {
 
         WebFlickResource webFlickResource = WebFlickResource.builder()
                 .name("User")
@@ -27,7 +27,7 @@ class DynamicEntityGeneratorTest {
                 ))
                 .build();
 
-        String generatedResource = new DynamicEntityGenerator().generateRepository(webFlickResource);
+        String generatedResource = new DynamicEntityGenerator().generateEntity(webFlickResource);
         Assert.notNull(generatedResource, "Generated Resource is not null");
     }
 }

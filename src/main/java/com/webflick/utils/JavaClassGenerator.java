@@ -13,7 +13,8 @@ import java.util.Arrays;
 
 public class JavaClassGenerator {
 
-    public static void generateClass(String className, String sourceCode, String outputDir) throws Exception {
+    public static void generateClass(String className, String sourceCode) throws Exception {
+        String outputDir = "target/classes";
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
         JavaFileObject javaFileObject = new InMemoryJavaFileObject(className, sourceCode);
