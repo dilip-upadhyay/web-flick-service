@@ -1,14 +1,16 @@
 package com.webflick.utils;
 
 import com.webflick.models.webflick.WebFlickResource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.StringWriter;
 
+@Slf4j
 @Component
 public class DynamicControllerGenerator {
 
-    public String generateController(WebFlickResource webFlickResource) {
+    public String generateController(WebFlickResource webFlickResource) throws Exception {
         StringWriter entityWriter = new StringWriter();
         entityWriter.append("""
                                 
@@ -57,13 +59,14 @@ public class DynamicControllerGenerator {
                 .append(Utils.firstCharToUpperRemoveSpaces(webFlickResource.getEntityName()))
                 .append("> resources) {");
         entityWriter.append(System.lineSeparator());
-        entityWriter.append("repository.saveAll(resources);");
+        entityWriter.append("return repository.saveAll(resources);");
         entityWriter.append(System.lineSeparator());
         entityWriter.append("}");
         entityWriter.append(System.lineSeparator());
         entityWriter.append("}");
 
-
+        log.info("Entity generated: " + entityWriter.toString());
+        JavaClassGenerator.generateClass(Utils.firstCharToUpperRemoveSpaces(webFlickResource.getName())+"Controller", entityWriter.toString());
 
         return entityWriter.toString();
     }

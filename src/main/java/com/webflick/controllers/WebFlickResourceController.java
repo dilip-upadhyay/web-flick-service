@@ -50,6 +50,15 @@ public class WebFlickResourceController {
             }
         });
 
+        restResources.forEach(restResource -> {
+            System.out.println("Rest Resource generated: " + restResource.getName());
+            try {
+                dynamicControllerGenerator.generateController(restResource);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
 
 
         new Thread(WebFlickApplication::restart).start();
