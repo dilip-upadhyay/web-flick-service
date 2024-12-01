@@ -16,7 +16,8 @@ RUN mvn clean package -DskipTests
 
 # Remove extra files
 RUN rm -r /app/src
-#RUN rm -f /app/*
+#
+RUN rm -f /app/*
 
 # Copy the built artifacts to the target directory
 #RUN mkdir -p /app/target && mv -r target/* /app/target/

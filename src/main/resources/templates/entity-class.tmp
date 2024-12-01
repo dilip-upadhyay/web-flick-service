@@ -14,14 +14,15 @@ public class ControllerName {
 
     private final RepositoryName repository;
     @GetMapping
-    public List<Employee> get() {
+    public List<Employee> getEmployee() {
         return repository.findAll();
         //return List.of(new Employee(1,"Name", 25, "Address"));
     }
 
     @PostMapping
-    public List<Employee> add(@RequestBody List<Employee> resources) {
-        return repository.saveAll(resources);
+    public List<Employee> addEmployee(@RequestBody List<Employee> employees) {
+        return repository.saveAll(employees);
+        //return List.of(new Employee(1,"Name", 25, "Address"));
     }
 
 

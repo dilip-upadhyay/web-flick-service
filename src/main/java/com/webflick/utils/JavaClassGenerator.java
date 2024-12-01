@@ -1,4 +1,4 @@
-package com.webflick;
+package com.webflick.utils;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
