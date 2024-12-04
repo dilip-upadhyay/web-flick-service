@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DynamicControllerGeneratorTest {
 
     @Test
-    void generateRepository() {
+    void generateRepository() throws Exception {
 
         DynamicControllerGenerator dynamicControllerGenerator = new DynamicControllerGenerator();
         String controller = dynamicControllerGenerator.generateController(WebFlickResource.builder()

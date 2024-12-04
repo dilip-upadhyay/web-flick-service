@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DynamicRepositoryGeneratorTest {
 
     @Test
-    void generateRepository() {
+    void generateRepository() throws Exception {
         DynamicRepositoryGenerator dynamicRepositoryGenerator = new DynamicRepositoryGenerator();
         String repository = dynamicRepositoryGenerator.generateRepository(WebFlickResource.builder()
                 .id("1")
