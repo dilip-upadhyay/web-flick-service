@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import com.webflick.configurations.datasource.DatasourceManager;
 
 @Configuration
 public class DataSourceConfig {
@@ -25,6 +29,18 @@ public class DataSourceConfig {
 
     @Bean
     public JdbcTemplate h2JdbcTemplate(@Qualifier("getInMemoryDataSource") DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        DatasourceManager.jdbcTemplateMap.put("h2JdbcTemplate", jdbcTemplate);
+        return jdbcTemplate;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource);
+        em.setPackagesToScan("com.webflick.entity");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        return em;
     }
 }

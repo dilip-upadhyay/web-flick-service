@@ -1,11 +1,14 @@
 package com.webflick.utils;
 
 import com.webflick.WebFlickApplication;
+import com.webflick.configurations.datasource.DatasourceManager;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 
@@ -48,5 +51,9 @@ public class Utils {
         context.close();
         context = SpringApplication.run(WebFlickApplication.class, args.getSourceArgs());
 
+    }
+
+    public static JdbcTemplate getJdbcTemplate(String jdbcTemplateName) {
+        return DatasourceManager.jdbcTemplateMap.get(jdbcTemplateName);
     }
 }

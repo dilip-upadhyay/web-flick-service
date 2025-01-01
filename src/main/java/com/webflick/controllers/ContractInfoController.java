@@ -5,22 +5,16 @@
 
 package com.webflick.controllers;
 
-import com.webflick.models.ContractInfo;
-import com.webflick.repositories.ContractInfoRepository;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 )
 @RequiredArgsConstructor
 public class ContractInfoController {
-    private final ContractInfoRepository repository;
     private final JdbcTemplate h2JdbcTemplate;
 
     @GetMapping
@@ -51,10 +44,10 @@ public class ContractInfoController {
         return resultList;
     }
 
-    @PostMapping
-    public List<ContractInfo> add(@RequestBody List<ContractInfo> var1) {
-        return this.repository.saveAll(var1);
-    }
+//    @PostMapping
+//    public List<ContractInfo> add(@RequestBody List<ContractInfo> var1) {
+//        return this.repository.saveAll(var1);
+//    }
 
 
 }
